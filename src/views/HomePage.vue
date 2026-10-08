@@ -1,5 +1,9 @@
 <script setup>
-const spin = () => alert('Hello')
+import AnimeCard from '@/components/AnimeCard.vue'
+
+const spin = () => {
+  console.log('Hello')
+}
 </script>
 
 <template>
@@ -19,7 +23,7 @@ const spin = () => alert('Hello')
       <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <section class="space-y-5">
           <div
-            class="rounded-3xl border border-slate-700/70 bg-slate-900/60 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur"
+            class="rounded-3xl border border-slate-700/70 bg-slate-900/60 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur-sm"
           >
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -37,6 +41,7 @@ const spin = () => alert('Hello')
               </button>
             </div>
           </div>
+          <AnimeCard loading />
         </section>
       </div>
     </div>
