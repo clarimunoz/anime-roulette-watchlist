@@ -51,7 +51,7 @@ const props = defineProps({
     </div>
 
     <div v-else-if="anime">
-      <pre>{{ anime }}</pre>
+      <pre class="wrap-break-word whitespace-pre-wrap">{{ anime }}</pre>
     </div>
 
     <div
