@@ -1,6 +1,7 @@
-import { useFetch, useCountdown } from '@vueuse/core'
+import { useFetch, useCountdown, useLocalStorage } from '@vueuse/core'
 import { ref } from 'vue'
 
+const WATCHLIST_KEY = 'anime-roulette-watchlist'
 const URL = 'https://api.tenrai.org/v1/random/anime'
 const MAX_SAFE_SPIN_ATTEMPTS = 5
 const RETRY_SECONDS = 10
@@ -18,6 +19,8 @@ export function useAnimeRoulette() {
   const { remaining: cooldownLeft, start: startCooldown } = useCountdown(0, {
     interval: 1000,
   })
+
+  const watchlist = useLocalStorage(WATCHLIST_KEY, [])
 
   const spin = async () => {
     if (loading.value || cooldownLeft.value > 0) return
@@ -74,11 +77,52 @@ export function useAnimeRoulette() {
     }
   }
 
+  const addToWatchlist = (animeToAdd) => {
+    if (!animeToAdd?.mal_id) {
+      return
+    }
+
+    const alreadyInWatchlist = watchlist.value.some(
+      (watchlistAnime) => watchlistAnime.mal_id === animeToAdd.mal_id,
+    )
+
+    if (alreadyInWatchlist) {
+      return
+    }
+
+    watchlist.value.unshift({
+      mal_id: animeToAdd.mal_id,
+      title: animeToAdd.title,
+      score: animeToAdd.score,
+      episodes: animeToAdd.episodes,
+      rating: animeToAdd.rating,
+      url: animeToAdd.url,
+      image:
+        animeToAdd.images?.jpg?.large_image_url ||
+        animeToAdd.images?.jpg?.image_url ||
+        animeToAdd.images?.webp?.large_image_url ||
+        animeToAdd.images?.webp?.image_url ||
+        '',
+    })
+  }
+
+  const removeFromWatchlist = (malId) => {
+    watchlist.value = watchlist.value.filter((watchlistAnime) => watchlistAnime.mal_id !== malId)
+  }
+
+  const isInWatchlist = (malId) => {
+    return watchlist.value.some((watchlistAnime) => watchlistAnime.mal_id === malId)
+  }
+
   return {
     anime,
     loading,
     error,
     spin,
     cooldownLeft,
+    watchlist,
+    addToWatchlist,
+    removeFromWatchlist,
+    isInWatchlist,
   }
 }

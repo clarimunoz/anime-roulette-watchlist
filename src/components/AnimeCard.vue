@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref, watch } from 'vue'
+
 const props = defineProps({
   anime: {
     type: Object,
@@ -60,7 +61,7 @@ watch(
     class="rounded-3xl border border-slate-700/70 bg-slate-900/60 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur-sm"
   >
     <div
-      v-if="loading"
+      v-if="props.loading"
       class="space-y-4"
     >
       <div class="flex items-center gap-3 text-cyan-300">
