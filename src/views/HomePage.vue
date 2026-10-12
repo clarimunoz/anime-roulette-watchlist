@@ -27,19 +27,21 @@ const spinLabel = computed(() => {
     return `Cooldown ${cooldownLeft.value}s`
   }
 
-  return 'SPIN 🎰'
+  return 'SPIN 💫'
 })
 </script>
 
 <template>
   <main
-    class="min-h-screen bg-[radial-gradient(circle_at_15%_20%,#334155,transparent_40%),radial-gradient(circle_at_85%_0%,#0f766e,transparent_28%),linear-gradient(160deg,#020617,#0f172a,#111827)] px-4 py-8 text-slate-100 sm:px-6 lg:px-8"
+    class="min-h-screen bg-[linear-gradient(135deg,#ff9ebb_0%,#ffdf7a_45%,#bbf7d0_100%)] px-4 py-8 text-slate-100 sm:px-6 lg:px-8"
   >
     <div class="mx-auto max-w-7xl">
       <header class="mb-8">
-        <p class="text-xs font-semibold tracking-[0.3em] text-cyan-300 uppercase">Project #4</p>
-        <h1 class="mt-2 text-4xl font-black text-white sm:text-5xl">Anime Roulette Machine</h1>
-        <p class="mt-2 max-w-3xl text-sm text-slate-300 sm:text-base">
+        <p class="text-xs font-semibold tracking-[0.3em] text-gray-800 uppercase">Project #4</p>
+        <h1 class="mt-2 text-4xl font-black text-fuchsia-950 sm:text-5xl">
+          Anime Roulette Machine
+        </h1>
+        <p class="mt-2 max-w-3xl text-sm text-[rgb(112,26,117)] sm:text-base">
           Spin the reel, request a random anime from Kitsu with VueUse useFetch, and learn how REST
           APIs signal rate militing with HTTP 429.
         </p>
@@ -48,19 +50,19 @@ const spinLabel = computed(() => {
       <div class="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
         <section class="space-y-5">
           <div
-            class="rounded-3xl border border-slate-700/70 bg-slate-900/60 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur-sm"
+            class="rounded-3xl border border-white/40 bg-white/40 p-5 shadow-sm backdrop-blur-md"
           >
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h2 class="text-xl font-bold text-white">Roulette</h2>
-                <p class="text-sm text-slate-300">
+                <h2 class="text-xl font-bold text-fuchsia-900">Roulette</h2>
+                <p class="text-sm text-[rgb(112,26,117)]">
                   Pull the lever for your next random anime recommendation.
                 </p>
               </div>
               <button
                 type="button"
                 :disabled="spinDisabled"
-                class="cursor-pointer rounded-full border border-cyan-300/70 bg-cyan-400/20 px-6 py-3 text-base font-black tracking-wide text-cyan-100 hover:bg-cyan-400/30 disabled:cursor-not-allowed disabled:opacity-60"
+                class="cursor-pointer rounded-full border border-fuchsia-300/70 bg-[linear-gradient(to_right,#e84393,#d63031_0%,#e056fd_100%)] px-6 py-3 text-base font-black tracking-wide text-white transition-all duration-200 hover:shadow-[0_0_20px_rgba(224,86,253,0.6)] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
                 @click="spin"
               >
                 {{ spinLabel }}
