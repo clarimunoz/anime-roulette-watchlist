@@ -43,7 +43,7 @@ const spinLabel = computed(() => {
         </h1>
         <p class="mt-2 max-w-3xl text-sm text-[rgb(112,26,117)] sm:text-base">
           Spin the reel, request a random anime from Kitsu with VueUse useFetch, and learn how REST
-          APIs signal rate militing with HTTP 429.
+          APIs signal rate limiting with HTTP 429.
         </p>
       </header>
 
